@@ -1,6 +1,10 @@
 package com.example.demo.tradicional;
 
 public class Medico {
+	@Override
+	public String toString() {
+		return "Medico [nombre=" + nombre + ", cedula=" + cedula + "]";
+	}
 	private String nombre;
 	private String cedula;
 	
