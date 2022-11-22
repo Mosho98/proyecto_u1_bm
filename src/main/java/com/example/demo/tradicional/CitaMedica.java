@@ -32,7 +32,7 @@ public class CitaMedica {
 			this.paciente = pacienteTE;
 			System.out.println("Paciente con descuento");
 			
-		}else {
+		}if(tipo.equals("N")) {
 			PacienteNinio pacienteNinio = new PacienteNinio();
 			
 			pacienteNinio.setPesoNacimiento(5);		
@@ -40,6 +40,11 @@ public class CitaMedica {
 			
 			this.paciente = pacienteNinio;
 			System.out.println("Paciente niño sin descuento");
+		}else {
+			
+			PacienteCancer pc = new PacienteCancer();
+			this.paciente = pc;
+			System.out.println("Paciente Cancer con el 30% de descuento");
 		}
 		
 		this.paciente.setNombre(nombrePaciente);
