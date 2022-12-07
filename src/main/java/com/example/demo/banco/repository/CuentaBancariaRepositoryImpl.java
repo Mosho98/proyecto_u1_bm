@@ -1,6 +1,6 @@
 package com.example.demo.banco.repository;
 
-import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 		CuentaBancaria cuenta= null;
 		for(CuentaBancaria cb: baseCuentas) {
 			if(cb.getNumero().equals(numeroCuenta)) {
-				
+				cuenta = cb;
 			}
 		}
 		return cuenta;
@@ -34,13 +34,26 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 
 	@Override
 	public CuentaBancaria buscar(Integer id) {
-		System.out.println("SE BUSCA A CUENTA" + id );
+		System.out.println("SE BUSCA LA CUENTA" + id );
 		return null;
 	}
 
 	@Override
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
+		CuentaBancaria cuenta= null;
+		for(CuentaBancaria cb: baseCuentas) {
+			if(cb.getNumero().equals(cuentaBancaria.getNumero())) {
+				cuenta  = cb;
+				//baseCuentas.add(cuentaBancaria);
+				
+			}
+			
+		}
+		baseCuentas.remove(cuenta);
+		baseCuentas.add(cuentaBancaria);
+		
+		System.out.println("Se actualizo la cuenta" + cuentaBancaria);
 		
 	}
 

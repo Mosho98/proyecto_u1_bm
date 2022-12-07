@@ -11,5 +11,10 @@ public interface ITransferenciaService {
 	public void realizar(String numeroOrigen, String numeroDestino, BigDecimal monto);
 	//CRUD construir 
 	
-	
+	public Transferencia buscar(Integer id);
+	//
+	public void insertar(Transferencia transferencia);
+	public void borrar(Integer id);
+
+	public List<Transferencia> buscarTodos();
 }

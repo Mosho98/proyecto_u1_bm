@@ -1,6 +1,7 @@
 package com.example.demo.banco.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,43 @@ public class TransferenciaServiceImpl implements ITransferenciaService{
 		destino.setSaldo(nuevoSaldoDestino);
 		this.bancariaService.actualizar(destino);
 		
+		
+		Transferencia trans = new Transferencia();
+		trans.setCuentaDestino(numeroDestino);
+		trans.setCuentaOrigen(numeroOrigen);
+		trans.setFecha(LocalDateTime.now());
+		trans.setMonto(monto);
+		trans.setNumero("12345");
+		
+		this.iTtransferenciaRepository.insertar(trans);
+		
 	
+	}
+
+	@Override
+	public Transferencia buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.iTtransferenciaRepository.buscar(id);
+	}
+
+
+	@Override
+	public void insertar(Transferencia transferencia) {
+		// TODO Auto-generated method stub
+		this.iTtransferenciaRepository.insertar(transferencia);
+		
+	}
+
+	@Override
+	public void borrar(Integer id) {
+		// TODO Auto-generated method stub
+		this.iTtransferenciaRepository.borrar(id);
+	}
+
+	@Override
+	public List<Transferencia> buscarTodos() {
+		// TODO Auto-generated method stub
+		return this.iTtransferenciaRepository.buscarTodos();
 	}
 
 }
