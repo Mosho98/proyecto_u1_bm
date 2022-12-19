@@ -12,6 +12,11 @@ import com.example.demo.banco.modelo.CuentaBancaria;
 import com.example.demo.banco.modelo.Transferencia;
 import com.example.demo.banco.service.ICuentaBancariaService;
 import com.example.demo.banco.service.ITransferenciaService;
+import com.example.demo.ejercicio1.modelo.Propietario;
+import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaService;
+import com.example.demo.ejercicio1.service.IPropietarioService;
+import com.example.demo.ejercicio1.service.IVehiculoService;
 import com.example.demo.herencia.CitaMedicaH;
 import com.example.demo.spring.boot.CitaMedicaSB;
 import com.example.demo.spring.boot.MedicoSB;
@@ -21,11 +26,14 @@ import com.example.demo.spring.boot.PacienteTerceraEdadSB;
 @SpringBootApplication
 public class ProyectoU1BmApplication implements CommandLineRunner {
 	
-@Autowired
-private ICuentaBancariaService bancariaService;
+	@Autowired
+    private IVehiculoService iVehiculoService;
 
-@Autowired
-private ITransferenciaService iTransferenciaService;
+    @Autowired
+    private IPropietarioService iPropietarioService;
+
+    @Autowired
+    private IMatriculaService iMatriculaService;
 
 
 public static void main(String[] args) {
@@ -35,49 +43,28 @@ public static void main(String[] args) {
 
 	@Override
 	public void run(String... args) throws Exception {
-		CuentaBancaria cuenta1 = new CuentaBancaria();
-		cuenta1.setNumero("0001");
-		cuenta1.setTipo("A");
-		cuenta1.setTitular("Bryan Mullo");
-		cuenta1.setSaldo(new BigDecimal(100));
-		this.bancariaService.insertar(cuenta1);
-		
-		
-		CuentaBancaria cuenta2 = new CuentaBancaria();
-		cuenta2.setNumero("0002");
-		cuenta2.setTipo("B");
-		cuenta2.setTitular("Diana Teran");
-		cuenta2.setSaldo(new BigDecimal(200));
-		this.bancariaService.insertar(cuenta2);
-		
-		System.out.println("Saldos actuales");
-		CuentaBancaria cuentaActual1 = this.bancariaService.bucarPorNumero("0001");
-		CuentaBancaria cuentaActual2 = this.bancariaService.bucarPorNumero("0002");
-		
-		System.out.println("Saldo actual: " + cuentaActual1.getSaldo());
-		System.out.println("Saldo actual: " + cuentaActual2.getSaldo());
-		
-		
-		System.out.println("Reporte 1");
-		for(Transferencia t : this.iTransferenciaService.buscarReporte()) {
-			System.out.println(t);
-		}
-		
-		
-		this.iTransferenciaService.realizar("0001", "0002", new BigDecimal(10));
-		
-		System.out.println("Reporte 2");
-		for(Transferencia t : this.iTransferenciaService.buscarReporte()) {
-			System.out.println(t);
-		}
-		
-		System.out.println("Saldos nuevos");
-		CuentaBancaria cuentaConsultada1 = this.bancariaService.bucarPorNumero("0001");
-		CuentaBancaria cuentaConsultada2 = this.bancariaService.bucarPorNumero("0002");
-		
-		System.out.println("Nuevo saldo: " + cuentaConsultada1.getSaldo());
-		System.out.println("Nuevo saldo: " + cuentaConsultada2.getSaldo());
-		
+		Vehiculo vehi=new Vehiculo();
+        vehi.setMarca("toyota");
+        vehi.setPlaca("pds");
+        vehi.setPrecio(new BigDecimal(20000));
+        vehi.setTipo("p");
+
+        this.iVehiculoService.crear(vehi);
+
+        vehi.setPrecio(new BigDecimal(10000));
+        vehi.setMarca("Toyota");
+
+        this.iVehiculoService.modificar(vehi);
+
+        Propietario propietario=new Propietario();
+        propietario.setApellido("cayambe");
+        propietario.setCedula("12147552");
+        propietario.setFechaNacimiento(LocalDateTime.of(1989,7,7,12,35 ));
+        propietario.setNombre("Edison");
+
+        this.iPropietarioService.guardar(propietario);
+
+        this.iMatriculaService.matricular("12147552", "pds");
 		
 	}
 
