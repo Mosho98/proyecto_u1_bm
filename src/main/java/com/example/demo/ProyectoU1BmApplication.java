@@ -4,24 +4,18 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.banco.modelo.CuentaBancaria;
-import com.example.demo.banco.modelo.Transferencia;
-import com.example.demo.banco.service.ICuentaBancariaService;
-import com.example.demo.banco.service.ITransferenciaService;
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
 import com.example.demo.ejercicio1.service.IMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
 import com.example.demo.ejercicio1.service.IVehiculoService;
-import com.example.demo.herencia.CitaMedicaH;
-import com.example.demo.spring.boot.CitaMedicaSB;
-import com.example.demo.spring.boot.MedicoSB;
-import com.example.demo.spring.boot.PacienteCancerSB;
-import com.example.demo.spring.boot.PacienteTerceraEdadSB;
+
 
 @SpringBootApplication
 public class ProyectoU1BmApplication implements CommandLineRunner {
@@ -33,7 +27,8 @@ public class ProyectoU1BmApplication implements CommandLineRunner {
     private IPropietarioService iPropietarioService;
 
     @Autowired
-    private IMatriculaService iMatriculaService;
+    @Qualifier("pesado")
+    private IMatriculaNuevaService iMatriculaService;
 
 
 public static void main(String[] args) {
