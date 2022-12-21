@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IGestorMatriculaService;
 import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
 import com.example.demo.ejercicio1.service.IMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
@@ -25,10 +26,11 @@ public class ProyectoU1BmApplication implements CommandLineRunner {
 
     @Autowired
     private IPropietarioService iPropietarioService;
-
+    
     @Autowired
-    @Qualifier("pesado")
-    private IMatriculaNuevaService iMatriculaService;
+    private IGestorMatriculaService gestorMatriculaService;
+
+   
 
 
 public static void main(String[] args) {
@@ -40,9 +42,9 @@ public static void main(String[] args) {
 	public void run(String... args) throws Exception {
 		Vehiculo vehi=new Vehiculo();
         vehi.setMarca("toyota");
-        vehi.setPlaca("pds");
+        vehi.setPlaca("LBB7250");
         vehi.setPrecio(new BigDecimal(20000));
-        vehi.setTipo("p");
+        vehi.setTipo("l");
 
         this.iVehiculoService.crear(vehi);
 
@@ -58,8 +60,13 @@ public static void main(String[] args) {
         propietario.setNombre("Edison");
 
         this.iPropietarioService.guardar(propietario);
+        
+        
+        //opcion 3
+        this.gestorMatriculaService.matricular("1723642384", "LBB7250");
+   
 
-        this.iMatriculaService.matricular("12147552", "pds");
+        
 		
 	}
 

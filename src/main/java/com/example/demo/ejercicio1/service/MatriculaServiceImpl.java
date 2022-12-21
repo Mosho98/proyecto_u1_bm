@@ -34,22 +34,12 @@ public class MatriculaServiceImpl implements IMatriculaService{
 		matricula.setVehiculo(vehiculo);
 		
 		BigDecimal valor=null;
-		if(vehiculo.getTipo().equals("p")) {
-			valor=vehiculo.getPrecio().multiply(new BigDecimal(0.15));
-		}else {
-			valor=vehiculo.getPrecio().multiply(new BigDecimal(0.10));
+		
 
 		}
 		//-1 valor izquierda menor
 		//0 iguales
 		//1 valor derecha es menor
-		if(valor.compareTo(new BigDecimal(2000))>1) {
-			BigDecimal descuento=valor.multiply(new BigDecimal(0.07));
-			valor=valor.subtract(descuento);
-		}
 		
-		matricula.setValor(valor);
-		this.iMatriculaRepository.insertar(matricula);
 	}
 
-}
